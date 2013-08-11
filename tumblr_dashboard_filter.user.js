@@ -26,12 +26,13 @@ var filter = function(records){
     Array.prototype.forEach.call(records, function(record){
         if(record.addedNodes == null) return;
         Array.prototype.forEach.call(record.addedNodes, function(node){
-            if(node.nodeType == Node.ELEMENT_NODE && node.classList.contains("post"))
+            if(node.nodeType == Node.ELEMENT_NODE && node.classList.contains("post_container"))
                 if(myFilter(node))
-                    node.classList.add("tdf_excluded");
+                    node.classList.add("tdf_invisible");
         });
     });
 };
+
 var target = document.querySelector('#posts');
 var observer = new MutationObserver(filter);
 observer.observe(target, { childList: true });
